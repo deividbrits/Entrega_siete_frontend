@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
 
-import { Route, Redirect } from 'react-router-dom'
-import UserContext from '../../context/users/UserContext'
+import { Route } from 'react-router-dom'
+import UserContext from '../../context/user/UserContext'
 
 export default function PrivateRoute({ component: Component, ...props }) {
 
