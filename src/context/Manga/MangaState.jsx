@@ -6,7 +6,7 @@ import clienteAxios from '../../config/Axios'
 
 const MangaState = (props) => {
     const initialState = {
-        manga: [
+        mangas: [
             
         ]
     }
@@ -32,7 +32,9 @@ const MangaState = (props) => {
 
     const getAllManga = async () => {
         try {
-            const response = await clienteAxios.get('/readall')
+            const response = await clienteAxios.get('/products/readall')
+            console.log('getallmanga')
+            console.log(response)
             dispatch ({
                 type: 'GET_ALL_MANGAS',
                 payload: response.data.manga
@@ -52,7 +54,7 @@ const MangaState = (props) => {
             precio: dataform.precio,
         }
         try {
-        await clienteAxios.put(`/update/:id`,form)
+        await clienteAxios.put(`/update/:${id}`,form)
         getAllManga()
         } catch (error) {
             console.log(error)
@@ -62,7 +64,7 @@ const MangaState = (props) => {
     const deleteManga = async (id) => {
         const data = { id }
         try {
-        await clienteAxios.delete(`/delete/:id`, {data})
+        await clienteAxios.delete(`/delete/:${id}`, {data})
         getAllManga()
         } catch (error) {
             console.log(error)

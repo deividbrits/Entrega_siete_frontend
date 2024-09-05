@@ -1,7 +1,7 @@
 import React from 'react'
 import UserState from './context/user/UserState'
 import MangaState from './context/Manga/MangaState'
-import { Route, Router, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import Header from './components/Layout/Header'
 import PrivateRoute from './components/Auth/PrivateRoute'
 import { Profile }  from './components/Profile/Profile'
@@ -14,9 +14,10 @@ export const App = () => {
   return (
     <UserState>
       <MangaState>
-        <Router>
+        <Header />
+        <BrowserRouter>
           <Routes>
-          <Header />
+        
           <Route path='/profile' element={<PrivateRoute element={<Profile />} /> }/>
 
           <Route path='/login' element={<AuthRoute element={<Login/>} />} />
@@ -25,7 +26,7 @@ export const App = () => {
           <Route path='/' element={<Page1 /> } />
           
           </Routes>
-        </Router>
+          </BrowserRouter>
       </MangaState>
     </UserState>
   )
