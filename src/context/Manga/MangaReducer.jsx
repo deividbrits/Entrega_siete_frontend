@@ -1,9 +1,9 @@
 const reducer = (globalState, action) => {
     switch(action.type) {
-        case 'GET_ALL_MANGAS':
+        case 'GET-ALL-MANGAS':
             return {
                 ...globalState,
-                mangas: action.payload
+                manga: action.payload
             }
         default:
             return globalState

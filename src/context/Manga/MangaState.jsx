@@ -1,14 +1,12 @@
 import React, { useReducer } from 'react'
 import MangaContext from './MangaContext'
 import MangaReducer from './MangaReducer'
-import clienteAxios from '../../config/Axios'
+import axiosClient from '../../config/Axios'
 
 
 const MangaState = (props) => {
     const initialState = {
-        mangas: [
-            
-        ]
+        manga: []
     }
 
     const [globalState, dispatch] = useReducer(MangaReducer, initialState);
@@ -22,7 +20,7 @@ const MangaState = (props) => {
             precio: dataform.precio,
         }
         try {
-        await clienteAxios.post(`/create`,form)
+        await axiosClient.post(`/create`,form)
         getAllManga()
         } catch (error) {
             console.log(error)
@@ -32,17 +30,26 @@ const MangaState = (props) => {
 
     const getAllManga = async () => {
         try {
-            const response = await clienteAxios.get('/products/readall')
-            console.log('getallmanga')
-            console.log(response)
+            const response = await axiosClient.get('/products/readall')
+            if (response.status !== 200) {
+                throw new Error(`API returned status code ${response.status}`);
+              }
+            if (response.data && response.data.indexOf('<!doctype html>') === 0) {
+                throw new Error('Invalid response from API');
+        
+            
+            }
             dispatch ({
-                type: 'GET_ALL_MANGAS',
-                payload: response.data.manga
+                type: 'GET-ALL-MANGAS',
+                payload: response.data
+                
             })
         } catch(error) {
             console.log(error)
         }
+        
     }
+
 
     const updateManga = async (id,dataform) => {
         const form = {
@@ -54,7 +61,7 @@ const MangaState = (props) => {
             precio: dataform.precio,
         }
         try {
-        await clienteAxios.put(`/update/:${id}`,form)
+        await axiosClient.put(`/update/:${id}`,form)
         getAllManga()
         } catch (error) {
             console.log(error)
@@ -64,7 +71,7 @@ const MangaState = (props) => {
     const deleteManga = async (id) => {
         const data = { id }
         try {
-        await clienteAxios.delete(`/delete/:${id}`, {data})
+        await axiosClient.delete(`/delete/:${id}`, {data})
         getAllManga()
         } catch (error) {
             console.log(error)
@@ -75,7 +82,7 @@ const MangaState = (props) => {
     return (
         <MangaContext.Provider
             value={{
-                mangas: globalState.mangas,
+                manga: globalState.manga,
                 addManga,
                 getAllManga,
                 updateManga,
