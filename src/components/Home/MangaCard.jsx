@@ -17,7 +17,7 @@ export default function MangaCard() {
 
   useEffect(() => {
     const fetchData = async () =>{
-    await getAllManga();
+    getAllManga();
     setIsLoading(false)
   };
     fetchData();
@@ -29,7 +29,7 @@ export default function MangaCard() {
         <p>Loading Mangas...</p>
       ) : (
        mangas && mangas.length > 0 ? (
-        mangas.map((e) => (
+        mangas?.map((e ) => (
           <div key={e.id}>
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
