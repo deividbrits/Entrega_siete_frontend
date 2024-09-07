@@ -24,14 +24,14 @@ export default function MangaCard() {
   }, []);
 
   return (
-    <div>
+    <div class="main" >
       {isLoading ? (
         <p>Loading Mangas...</p>
       ) : (
        mangas && mangas.length > 0 ? (
         mangas?.map((e ) => (
-          <div key={e.id}>
-    <Card sx={{ maxWidth: 345 }}>
+          <div class="cardmode" key={e.id}>
+    <Card sx={{ maxWidth: 345 }} align-items="center" display="flex">
       <CardMedia
         component="img"
         alt="manga image"

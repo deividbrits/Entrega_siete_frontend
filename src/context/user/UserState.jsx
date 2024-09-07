@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react'
 import UserContext from './UserContext'
 import UserReducer from './UserReducer'
-
-import axiosClient from '../../config/Axios'
+import axiosClient from '../../config/axios'
+import getToken from '../../config/Token'
 
 const UserState = (props) => {
 
@@ -20,7 +20,7 @@ const UserState = (props) => {
     const registerUser = async (dataForm) => {
 
         try {
-            const res = await axiosClient.post("/usuario/crear", dataForm)
+            const res = await axiosClient.post("/users/register", dataForm)
             dispatch({
                 type: "REGISTRO_EXITOSO",
                 payload: res.data
@@ -34,17 +34,11 @@ const UserState = (props) => {
 
     const verifyingToken = async () => {
 
-        const token = localStorage.getItem('token')
-
-        if(token){
-            axiosClient.defaults.headers.common['x-auth-token'] = token
-        } else{
-            delete axiosClient.defaults.headers.common['x-auth-token']
-        }
+        getToken()
 
         try {
 
-            const respuesta = await axiosClient.get("/usuario/verificar-usuario")
+            const respuesta = await axiosClient.get("/users/verify")
             
             dispatch({
                 type: "OBTENER_USUARIO",
@@ -60,7 +54,7 @@ const UserState = (props) => {
     const loginUser = async (dataForm) => {
         console.log("dataForm", dataForm)
         try {
-            const respuesta = await axiosClient.post("/usuario/iniciar-sesion", dataForm)
+            const respuesta = await axiosClient.post("/users/login", dataForm)
 
             console.log(respuesta)
 

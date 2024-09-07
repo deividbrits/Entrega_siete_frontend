@@ -1,5 +1,4 @@
 import React, {useContext, useEffect, useState} from 'react'
-
 import { Route } from 'react-router-dom'
 import UserContext from '../../context/user/UserContext'
 
@@ -26,7 +25,7 @@ export default function AuthRoute({ component: Component, ...props }) {
             if(loading) return null
 
             return authStatus ? 
-                (<Redirect to="/perfil" />)
+                (<Redirect to="/profile" />)
                 :
                 (<Component {...props} />)
             }

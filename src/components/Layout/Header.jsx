@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,8 +14,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Productos', 'About Us', 'Preguntale a la IA'];
+const pages = ['Registrate', 'About Us', 'Preguntale a la IA'];
 const settings = ['Perfil', 'Cuenta', 'Mis Pedidos', 'Logout'];
+const routes = [
+  { path: '/about', name: 'About' },
+  { path: '/register', name: 'Registrate' },
+]
 
 function Header () {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -37,7 +42,7 @@ function Header () {
 
   return (
     <AppBar position="fixed">
-      <Container maxWidth="xl">
+      <Container maxWidth="false">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
@@ -67,8 +72,10 @@ function Header () {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
+              
               <MenuIcon />
             </IconButton>
+          
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -89,7 +96,7 @@ function Header () {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="right">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>

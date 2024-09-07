@@ -66,3 +66,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.main{
+  align-items: center;
+  display: flex;
+  
+}
+
+.cardmode {
+  padding-left: 200px;
+  padding-right: 200px;
+}
