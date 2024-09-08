@@ -10,25 +10,26 @@ import Register from "./components/Register/Register";
 import AuthRoute from "./components/Auth/AuthRoute";
 import { Page1 } from "./Pages/Page1";
 import { AboutUs } from "./Pages/AboutUs";
+import { AskIa } from "./Pages/AskIa";
 
 export const App = () => {
   return (
     <UserState>
       <MangaState>
-        <Header />
+        
         <Router>
-      
+        <Header />
           <Routes>
-            <Route>
-                <Route path="/profile" element={<PrivateRoute component={<Profile />} />} />
-                <Route path="/login" element={<AuthRoute component={Login} />} />
-                <Route path="/register" element={<AuthRoute component={Register} />} />
-                {/* <Route path="/profile" element={<Profile />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} /> */}
-                <Route path="/" element={<Page1 />} />
-                <Route path="/aboutus" element={<AboutUs />} />
-            </Route>    
+            <Route path="/profile" element={<PrivateRoute />}>
+            <Route path="" element={<Profile />} />
+            </Route>
+
+            <Route path="/login" element={<AuthRoute><Login /></AuthRoute>} />
+            <Route path="/register" element={<Register />}/>
+            <Route path="/" element={<Page1 />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="ask-ia" elemente={<AskIa />} />
+
           </Routes>
           </Router>
       </MangaState>

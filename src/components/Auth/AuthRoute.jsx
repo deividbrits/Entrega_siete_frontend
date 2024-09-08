@@ -1,36 +1,62 @@
-import React, {useContext, useEffect, useState} from 'react'
-import { Route } from 'react-router-dom'
-import UserContext from '../../context/user/UserContext'
+// import React, {useContext, useEffect, useState} from 'react'
+// import { Route } from 'react-router-dom'
+// import UserContext from '../../context/user/UserContext'
 
 
 
 
-export default function AuthRoute({ component: Component, ...props }) {
+// export default function AuthRoute({ component: Component, ...props }) {
 
-    const userCtx = useContext(UserContext)
-    const { authStatus, verifyingToken } = userCtx
+//     const userCtx = useContext(UserContext)
+//     const { authStatus, verifyingToken } = userCtx
 
-    const [loading, setLoading] = useState(true)
+//     const [loading, setLoading] = useState(true)
 
-    useEffect(async () => {
+//     useEffect(async () => {
 
-        await verifyingToken()
-        setLoading(false)
+//         await verifyingToken()
+//         setLoading(false)
 
-    }, [authStatus])
+//     }, [authStatus])
 
-    return (
-        <Route {...props} render={ props => {            
+//     return (
+//         <Route {...props} render={ props => {            
 
-            if(loading) return null
+//             if(loading) return null
 
-            return authStatus ? 
-                (<Redirect to="/profile" />)
-                :
-                (<Component {...props} />)
-            }
-        } />
-    )
+//             return authStatus ? 
+//                 (<Redirect to="/profile" />)
+//                 :
+//                 (<Component {...props} />)
+//             }
+//         } />
+//     )
         
     
+// }
+import React, { useContext, useEffect, useState } from 'react';
+import { Navigate, Route } from 'react-router-dom';
+import UserContext from '../../context/user/UserContext';
+
+export default function AuthRoute({ children, ...props }) {
+  const userCtx = useContext(UserContext);
+  const { authStatus, verifyingToken } = userCtx;
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const verify = async () => {
+      await verifyingToken();
+      setLoading(false);
+    };
+    verify();
+  }, [authStatus, verifyingToken]);
+
+  if (loading) {
+    return null; 
+  }
+
+  // Render children if NOT authenticated, otherwise redirect
+  return (
+    <Route {...props} element={authStatus ? <Navigate to="/profile" /> : children} />
+  );
 }
