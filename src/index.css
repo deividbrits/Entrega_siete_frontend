@@ -77,3 +77,7 @@ button:focus-visible {
   padding-left: 200px;
   padding-right: 200px;
 }
+
+.signIn {
+  margin-left: 1000px;
+}

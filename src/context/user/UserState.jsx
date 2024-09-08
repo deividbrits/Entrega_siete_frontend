@@ -39,10 +39,10 @@ const UserState = (props) => {
         try {
 
             const respuesta = await axiosClient.get("/users/verify")
-            
+            console.log(respuesta.data)
             dispatch({
                 type: "OBTENER_USUARIO",
-                payload: respuesta.data.usuario
+                payload: respuesta.data.user
             })
 
         } catch (error) {

@@ -12,13 +12,16 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import UserContext from '../../context/user/UserContext';
+import { useState } from 'react';
+import { useContext } from 'react';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="Allmangas">
+        AllManga
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -26,23 +29,47 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+
+const userCtx = useContext(UserContext)
+
+const {registerUser} = userCtx
+
+const [data, setData] = useState ({
+  username: "",
+  email: "",
+  password: ""
+})
+
+
+  const handleChange = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+
+    setData ({
+      ...data,
+      [event.target.name] : event.target.value
+    })
+
+    // const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
   };
 
+  const sendData = (event) => {
+    event.preventDefault()
+    console.log(data)
+    registerUser(data)
+  }
+
   return (
+    <div class="signIn">
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="lg" >
         <CssBaseline />
         <Box
           sx={{
@@ -56,22 +83,22 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Registro
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="dataForm" noValidate onChange={handleChange} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-name"
-                  name="firstName"
+                  autoComplete="username"
+                  name="username"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="username"
+                  label="username"
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              {/* <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
@@ -80,13 +107,13 @@ export default function SignUp() {
                   name="lastName"
                   autoComplete="family-name"
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="Email"
                   name="email"
                   autoComplete="email"
                 />
@@ -105,12 +132,13 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                  label="Quiero recibir información sobre los nuevos productos disponibles via email."
                 />
               </Grid>
             </Grid>
             <Button
-              type="submit"
+              type="button"
+              onClick={sendData}
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
@@ -120,7 +148,7 @@ export default function SignUp() {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                  Ya tienes cuenta? Hace Sign In
                 </Link>
               </Grid>
             </Grid>
@@ -129,5 +157,6 @@ export default function SignUp() {
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
+    </div>
   );
 }

@@ -55,7 +55,7 @@ export default function AuthRoute({ children, ...props }) {
     return null; 
   }
 
-  // Render children if NOT authenticated, otherwise redirect
+
   return (
     <Route {...props} element={authStatus ? <Navigate to="/profile" /> : children} />
   );

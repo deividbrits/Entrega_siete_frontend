@@ -20,9 +20,14 @@ export const App = () => {
         <Router>
         <Header />
           <Routes>
-            <Route path="/profile" element={<PrivateRoute />}>
-            <Route path="" element={<Profile />} />
+            <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>}>
+            
+            
             </Route>
+
+            
+
+
 
             <Route path="/login" element={<AuthRoute><Login /></AuthRoute>} />
             <Route path="/register" element={<Register />}/>

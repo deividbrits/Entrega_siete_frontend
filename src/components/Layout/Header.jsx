@@ -192,7 +192,9 @@ const pages = [
   { name: 'About Us', path: '/about-us' },
   { name: 'Preguntale a la IA', path: '/ask-ia' }
 ];
-const settings = ['Perfil', 'Cuenta', 'Mis Pedidos', 'Logout'];
+const settings = [{name:'Perfil', path:'/profile'},{name : 'Iniciar Sesión' ,path:'/signin'}
+  , {name:'Mis Pedidos' , path : '/shoppingCard'}
+  , {name:'Logout',path:'/logout'}];
 
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -318,8 +320,8 @@ function Header() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">{setting.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
