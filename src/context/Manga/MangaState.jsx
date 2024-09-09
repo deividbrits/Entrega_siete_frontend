@@ -31,14 +31,7 @@ const MangaState = (props) => {
     const getAllManga = async () => {
         try {
             const response = await axiosClient.get('/products/readall')
-            //   if (response.status !== 200) {
-            //     throw new Error(`API returned status code ${response.status}`);
-            //    }
-            //   if (response.data && response.data.indexOf('<!doctype html>') === 0) {
-            //     throw new Error('Invalid response from API');
-        
             
-            //   }
             console.log(response)
             dispatch ({
                 type: 'GET-ALL-MANGAS',

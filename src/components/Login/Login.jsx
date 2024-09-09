@@ -12,6 +12,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useContext } from 'react';
+import UserContext from '../../context/user/UserContext';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -26,19 +30,49 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
+
 
 const defaultTheme = createTheme();
 
 export default function Login() {
-  const handleSubmit = (event) => {
+  const userCtx = useContext(UserContext)
+
+  const {loginUser} = userCtx
+  
+  const navigate = useNavigate()
+
+  const [data, setData] = useState ({
+    email: "",
+    password: ""
+  })
+
+  
+  const handleChange = (event) => {
+
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    setData ({
+      ...data,
+      [event.target.name] : event.target.value
+    })
+
   };
+
+  const sendData = async (event) => {
+    event.preventDefault()
+    console.log(data)
+    try { 
+     await loginUser(data)
+     console.log("LogIn existoso")
+     navigate("/profile")
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+  
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -58,7 +92,7 @@ export default function Login() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onChange={handleChange} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -84,7 +118,8 @@ export default function Login() {
               label="Remember me"
             />
             <Button
-              type="submit"
+              type="button"
+              onClick={sendData}
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}

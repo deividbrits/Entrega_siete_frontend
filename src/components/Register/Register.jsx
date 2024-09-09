@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import UserContext from '../../context/user/UserContext';
 import { useState } from 'react';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -38,6 +39,10 @@ const userCtx = useContext(UserContext)
 
 const {registerUser} = userCtx
 
+const navigate = useNavigate()
+
+
+
 const [data, setData] = useState ({
   username: "",
   email: "",
@@ -46,6 +51,7 @@ const [data, setData] = useState ({
 
 
   const handleChange = (event) => {
+
     event.preventDefault();
 
     setData ({
@@ -53,17 +59,19 @@ const [data, setData] = useState ({
       [event.target.name] : event.target.value
     })
 
-    // const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
   };
 
-  const sendData = (event) => {
+  const sendData = async (event) => {
     event.preventDefault()
     console.log(data)
-    registerUser(data)
+    try { 
+     await registerUser(data)
+     console.log("registro existoso")
+     navigate("/login")
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 
   return (

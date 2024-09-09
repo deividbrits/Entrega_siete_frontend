@@ -1,47 +1,25 @@
-// import React, {useContext, useEffect, useState} from 'react'
-// import { Route } from 'react-router-dom'
-// import UserContext from '../../context/user/UserContext'
-
-
-
-
-// export default function AuthRoute({ component: Component, ...props }) {
-
-//     const userCtx = useContext(UserContext)
-//     const { authStatus, verifyingToken } = userCtx
-
-//     const [loading, setLoading] = useState(true)
-
-//     useEffect(async () => {
-
-//         await verifyingToken()
-//         setLoading(false)
-
-//     }, [authStatus])
-
-//     return (
-//         <Route {...props} render={ props => {            
-
-//             if(loading) return null
-
-//             return authStatus ? 
-//                 (<Redirect to="/profile" />)
-//                 :
-//                 (<Component {...props} />)
-//             }
-//         } />
-//     )
-        
-    
-// }
 import React, { useContext, useEffect, useState } from 'react';
-import { Navigate, Route } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import UserContext from '../../context/user/UserContext';
 
-export default function AuthRoute({ children, ...props }) {
+export default function AuthRoute() {
   const userCtx = useContext(UserContext);
   const { authStatus, verifyingToken } = userCtx;
   const [loading, setLoading] = useState(true);
+
+  const [auth, setAuthStatus] = useState(false);
+
+useEffect(() => {
+  // Simulamos una verificación de autenticación al cargar la aplicación
+  const token = localStorage.getItem('token');
+  if (token) {
+    // Si hay un token, verificamos su validez
+    setAuthStatus(true);
+  } else {
+    setAuthStatus(false);
+  }
+}, []);
+
 
   useEffect(() => {
     const verify = async () => {
@@ -49,14 +27,15 @@ export default function AuthRoute({ children, ...props }) {
       setLoading(false);
     };
     verify();
-  }, [authStatus, verifyingToken]);
+  }, [verifyingToken]);
 
   if (loading) {
-    return null; 
+    return <div>Loading...</div>; // Mientras el token se verifica
   }
+  console.log(authStatus)
+  console.log('Estado de autenticación:', auth);  // Verifica si cambia al momento correcto
 
-
-  return (
-    <Route {...props} element={authStatus ? <Navigate to="/profile" /> : children} />
-  );
+  // Si el usuario está autenticado, redirige al perfil, de lo contrario, renderiza los componentes hijos
+  return authStatus ? <Navigate to="/profile" /> : <Outlet />;
+  
 }

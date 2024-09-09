@@ -7,13 +7,16 @@ import getToken from '../../config/Token'
 const UserState = (props) => {
 
     const initialState = {
+        
         user: {
             username: null,
             email: null,
         },
-        authStatus: false,
-        loading: true
+        authStatus: null,
+        loading: true,
+        
     }
+    console.log(initialState)
 
     const [ globalState, dispatch ] = useReducer(UserReducer, initialState)
 
@@ -21,9 +24,10 @@ const UserState = (props) => {
 
         try {
             const res = await axiosClient.post("/users/register", dataForm)
+            const token =res.data.data
             dispatch({
                 type: "REGISTRO_EXITOSO",
-                payload: res.data
+                payload: token
             })
 
         } catch (error) {
@@ -34,17 +38,27 @@ const UserState = (props) => {
 
     const verifyingToken = async () => {
 
-        getToken()
+         const token = getToken()
+            if(!token) {
+                console.log("no se encontro token")
+                return
+            }
 
         try {
 
-            const respuesta = await axiosClient.get("/users/verify")
-            console.log(respuesta.data)
+            const respuesta = await axiosClient.get("/users/verify", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        
+            const userData = respuesta.data.data
+
             dispatch({
                 type: "OBTENER_USUARIO",
-                payload: respuesta.data.user
+                payload: userData
             })
-
+            
         } catch (error) {
             console.log(error)
         }
@@ -52,17 +66,18 @@ const UserState = (props) => {
 
 
     const loginUser = async (dataForm) => {
-        console.log("dataForm", dataForm)
+        // console.log("dataForm", dataForm)
+
         try {
             const respuesta = await axiosClient.post("/users/login", dataForm)
-
+            const token =respuesta.data.data
             console.log(respuesta)
 
             dispatch({
                 type: "LOGIN_EXITOSO",
-                payload: respuesta.data
+                payload: token
             })
-
+            console.log(token)
         } catch (error) {
             console.log(error)
         }
@@ -84,11 +99,13 @@ const UserState = (props) => {
             verifyingToken,
             loginUser,
             logout
+            
         }}>
 
             {props.children}
 
         </UserContext.Provider>
+    
     )
 
 

@@ -9,11 +9,15 @@ import { useContext } from "react";
 import MangaContext from "../../context/Manga/MangaContext";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 export default function MangaCard() {
   const ctx = useContext(MangaContext);
   const { mangas, getAllManga } = ctx;
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate ()
+
+  // const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const fetchData = async () =>{
@@ -22,6 +26,13 @@ export default function MangaCard() {
   };
     fetchData();
   }, []);
+
+
+  const addToCart = (manga) => {
+    console.log("Manga agregado al carrito:", manga);
+    navigate("/shoppingcard"); 
+  };
+
 
   return (
     <div class="main" >
@@ -48,7 +59,7 @@ export default function MangaCard() {
       </CardContent>
       <CardActions>
         <Button size="small">{e.precio}</Button>
-        <Button size="small">comprar</Button>
+        <Button size="small" onClick={ () => addToCart(e) }>comprar</Button>
       </CardActions>
     </Card>
     </div>
