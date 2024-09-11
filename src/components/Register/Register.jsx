@@ -151,12 +151,12 @@ const [data, setData] = useState ({
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Registrate
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="#" variant="body2">
-                  Ya tienes cuenta? Hace Sign In
+                  Ya tienes cuenta? Inicia Sesión
                 </Link>
               </Grid>
             </Grid>

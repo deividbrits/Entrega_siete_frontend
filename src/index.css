@@ -24,10 +24,12 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  display: grid;
   place-items: center;
-  min-width: 320px;
+  min-width: 220px;
   min-height: 100vh;
+  background-color: #242424;
+  color:#1a1a1a
 }
 
 h1 {
@@ -81,4 +83,10 @@ button:focus-visible {
 .signIn {
   margin-left: 1000px;
   
+}
+
+.conteiner-profile {
+  width: 1800px;
+  height: 1700px;
+
 }

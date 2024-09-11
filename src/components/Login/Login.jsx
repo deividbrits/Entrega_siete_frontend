@@ -22,7 +22,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        All Manga
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -90,7 +90,7 @@ export default function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Iniciar Sesión
           </Typography>
           <Box component="form" onChange={handleChange} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -98,7 +98,7 @@ export default function Login() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Email"
               name="email"
               autoComplete="email"
               autoFocus
@@ -115,7 +115,7 @@ export default function Login() {
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Recuerdame"
             />
             <Button
               type="button"
@@ -124,17 +124,17 @@ export default function Login() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Iniciar Sesión
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  Olvidaste tu password?
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Aún no tienes cuenta? Registrate"}
                 </Link>
               </Grid>
             </Grid>

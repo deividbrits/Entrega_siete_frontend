@@ -1,61 +1,25 @@
 import React from 'react'
+import 'nes.css/css/nes.min.css'
 
 export const Profile = () => {
   return (
-    <div className="mt-5 text-center">
-            <div className="card">
-                <div className="card-body">
-                    <img  width="100" className="img-fluid rounded" />
-                    <h5 className="card-title">Nombre: </h5>
-                    <p className="card-text">Email:</p>
-                    <button 
-                        className='btn btn-dark' 
-                        
-                    >
-                        Editar Nombre
-                    </button>
-                </div>
-                {/* {
-                    loading && 
-                    <div className="card-body">
-                        <div className="d-flex justify-content-center my-2">
-                            <div className="spinner-border" role="status">
-                                <span className="sr-only">Loading...</span>
-                            </div>
-                        </div>
-                    </div>
-                } */}
-                {
-                    
-                    <div className="card-body">
-                        <div className="row justify-content-center">
-                            <div className="col-md-5">
-                                <div className="input-group mb-3">
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        aria-label="Recipient's username" 
-                                        
-                                    
-                                    />
-                                    <div className="input-group-append">
-                                        <button 
-                                            className="btn btn-outline-secondary" 
-                                            type="button" 
-                                          
-                                        >
-                                            Editar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    )
-}
+<div className='conteiner-profile'>
+<div class="nes-container is-dark with-title">
+  <p class="title">Perfil de David</p>
+  <h1> Nombre Completo </h1>
+  <span class="nes-text is-primary">David Brito</span>
+  <h1> UserName </h1>
+  <span class="nes-text is-primary">deividbrits</span>
+  <h1>Correo Electronico </h1>
+  <span class="nes-text is-primary">d.brito@allmanga.com</span>
+  <button type="button" class="nes-btn is-warning">Editar</button>
+  <h1>Contraseña </h1>
+  <span class="nes-text is-primary">*******</span>
+  <button type="button" class="nes-btn is-warning">Cambiar</button>
 
+</div>
+</div>
+  )
+}
 export default Profile
 

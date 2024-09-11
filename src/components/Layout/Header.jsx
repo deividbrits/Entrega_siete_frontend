@@ -26,7 +26,7 @@ const settings = [
   {name:'Logout', path:'/logout'}
 ];
 
-function Header() {
+function  Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   
@@ -60,7 +60,7 @@ function Header() {
   }
 
   return (
-    <AppBar position="fixed" sx={{width : 6200, height : 150}}>
+    <AppBar  position="fixed" sx={{width : 6200, height : 150}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { md: 'none', lg: 'flex' }, mr:0 }} />
