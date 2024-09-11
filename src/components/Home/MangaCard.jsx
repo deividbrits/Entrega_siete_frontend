@@ -27,7 +27,6 @@ export default function MangaCard() {
     fetchData();
   }, []);
 
-
   const addToCart = (manga) => {
     console.log("Manga agregado al carrito:", manga);
     navigate("/shoppingcard"); 
@@ -35,31 +34,31 @@ export default function MangaCard() {
 
 
   return (
-    <div class="main" >
+    <div className="main" >
       {isLoading ? (
         <p>Loading Mangas...</p>
       ) : (
        mangas && mangas.length > 0 ? (
         mangas?.map((e ) => (
-          <div class="cardmode" key={e.id}>
-    <Card sx={{ maxWidth: 345 }} align-items="center" display="flex">
+          <div className="cardmode" key={e.id}>
+    <Card sx={{ maxWidth: 1200 }} align-items="center" display="fixed">
       <CardMedia
         component="img"
         alt="manga image"
-        height="140"
+        height="1000"
         image={e.foto}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h3" component="div">
           {e.nombre}
         </Typography>
-        <Typography variant="body2" sx={{ color: "text.secondary" }}>
+        <Typography variant="h4" sx={{ color: "text.secondary" }}>
           {e.autor}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">{e.precio}</Button>
-        <Button size="small" onClick={ () => addToCart(e) }>comprar</Button>
+        <Button size="large" variant="contained" >{e.precio}</Button>
+        <Button size="large" variant="contained"  onClick={ () => addToCart(e) }>comprar</Button>
       </CardActions>
     </Card>
     </div>

@@ -60,17 +60,17 @@ function Header() {
   }
 
   return (
-    <AppBar position="fixed">
-      <Container maxWidth="md">
+    <AppBar position="fixed" sx={{width : 6200, height : 150}}>
+      <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <AdbIcon sx={{ display: { md: 'none', lg: 'flex' }, mr:0 }} />
           <Typography
-            variant="h6"
+            variant="h1"
             noWrap
             component="a"
             href="/"
             sx={{
-              mr: 2,
+              mr: 1,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
@@ -114,7 +114,7 @@ function Header() {
             >
               {pages.map((page) => (
                 <MenuItem key={page.name} onClick={() => handleNavigate(page.path)}>
-                  <Typography textAlign="right">{page.name}</Typography>
+                  <Typography textAlign="left">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -125,21 +125,21 @@ function Header() {
               <Button
                 key={page.name}
                 onClick={() => handleNavigate(page.path)}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block', fontSize: 30, padding: 4  }}
               >
                 {page.name}
               </Button>
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 5 ,position:"relative" }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, padding:5 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              sx={{ mt: '45px', fontSize: 10 }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -156,7 +156,7 @@ function Header() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting.name} onClick={() => handdleNavigateUser(setting.path)}>
-                  <Typography textAlign="center">{setting.name}</Typography>
+                  <Typography textAlign="center" sx={{ fontSize: 30}}>{setting.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
