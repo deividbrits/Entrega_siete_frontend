@@ -57,7 +57,7 @@ export default function MangaCard() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="large" variant="contained" >{e.precio}</Button>
+        <Button size="large" variant="text" >$ {e.precio}</Button>
         <Button size="large" variant="contained"  onClick={ () => addToCart(e) }>comprar</Button>
       </CardActions>
     </Card>

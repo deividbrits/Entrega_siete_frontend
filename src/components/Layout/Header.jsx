@@ -134,8 +134,8 @@ function  Header() {
 
           <Box sx={{ flexGrow: 5 ,position:"relative" }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, padding:5 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, padding:0 }}>
+                <Avatar alt="Remy Sharp" sx={{ width: 56, height: 56 }} src="https://i.pinimg.com/originals/73/23/18/7323188c841349765e62559ceae738a7.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
