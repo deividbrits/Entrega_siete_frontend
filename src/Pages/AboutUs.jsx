@@ -2,7 +2,7 @@ import React from 'react'
 
 export const AboutUs = () => {
   return (
-    <div>
+    <div className='about-conteiner' >
 
       <section class="nes-container is-dark">
   <section class="message-list">

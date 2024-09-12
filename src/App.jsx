@@ -12,6 +12,7 @@ import {Page1} from "./Pages/Page1";
 import { AboutUs } from "./Pages/AboutUs";
 import {AskIa} from "./Pages/AskIa";
 import  ShoppingCar  from "./Pages/ShoppingCar";
+import { LogOut } from "./Pages/LogOut";
 
 export const App = () => {
   return (
@@ -32,6 +33,8 @@ export const App = () => {
 
             
             <Route path="/profile" element={<Profile />} />
+            <Route path="/logout" element={<LogOut />} />
+            
           </Routes>
         </Router>
       </MangaState>

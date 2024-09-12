@@ -2,7 +2,7 @@ import React from 'react'
 
 export const AskIa = () => {
   return (
-    <div>
+    <div className = "ask-conteiner">
     <div class="nes-container is-dark with-title">
       <p class="title">PROXIMAMENTE</p>
       <p>En esta epoca donde todo es AI-Powered, nosotros no podiamos quedarnos atrás.  </p>

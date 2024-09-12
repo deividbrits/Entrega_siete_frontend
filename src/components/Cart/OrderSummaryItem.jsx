@@ -38,12 +38,12 @@ const Cart = ({ cartItems, removeFromCart }) => {
   return (
     <div>
       <h2>Mis Pedidos</h2>
-      {cartItems.length === 0 ? <p>No items in cart.</p> : (
+      {cartItems.length === 0 ? <p>No hay items en el carrito .</p> : (
         <ul>
           {cartItems.map((item, index) => (
             <li key={index}>
               {item.nombre} - ${item.precio}
-              <button onClick={() => removeFromCart(item)}>Remove</button>
+              <button onClick={() => removeFromCart(item)}>Remover</button>
             </li>
           ))}
         </ul>

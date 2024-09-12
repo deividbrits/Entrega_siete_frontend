@@ -1,12 +1,14 @@
 .shopping-cart-container {
-    width: 80%; /* Adjust width as needed */
+    width: 100%; /* Adjust width as needed */
+    height: 50%;
     margin: 20px auto; /* Center the container */
     border: 1px solid #ccc; /* Optional border for visual clarity */
     padding: 20px;
+    font-size: larger;
   }
   
   .cart-content {
     display: flex; /* Arrange items side by side */
-    gap: 20px; /* Space between product list and cart summary */
+    gap: 30%; /* Space between product list and cart summary */
   }
   
