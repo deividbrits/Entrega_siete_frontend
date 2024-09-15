@@ -1,3 +1,4 @@
+import { ListItem, ListItemText, Typography } from '@mui/material';
 import React, { useEffect, useRef } from 'react'
 
 const Cart = ({ cartItems, removeFromCart }) => {
@@ -37,17 +38,25 @@ const Cart = ({ cartItems, removeFromCart }) => {
 
   return (
     <div>
-      <h2>Mis Pedidos</h2>
+      <Typography variant='h2' sx={{color : '#f9f9f9'}}>Mis Pedidos</Typography>
+      
       {cartItems.length === 0 ? <p>No hay items en el carrito .</p> : (
         <ul>
+          
+            
           {cartItems.map((item, index) => (
-            <li key={index}>
-              {item.nombre} - ${item.precio}
+            <ListItem key={index}>
+
+            <ListItemText sx={{fontSize : 30}} primary ={item.nombre} secondary = {`${item.precio}`}/>
+
+            
               <button onClick={() => removeFromCart(item)}>Remover</button>
-            </li>
-          ))}
+            
+          </ListItem>
+        ))}
+
         </ul>
-      )}
+      )} 
       <h3>Total : ${totalPrice}</h3>
 
       <div ref={paypalRef}></div>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ProductList from '../components/Cart/ShoppingCartItem'
 import Cart from '../../src/components/Cart/OrderSummaryItem'
 import './Shoppingcart.css'
+import { Typography } from '@mui/material';
+
 
 
 const ShoppingCar = () => {
@@ -27,7 +29,7 @@ const ShoppingCar = () => {
 
   return (
     <div className='shopping-cart-container'>
-      <h1>Mi Carro de Compras</h1>
+    <Typography variant='h1'sx={{color : '#872d16'}} >Mi Carro de Compras</Typography>
       <div className='cart-content'>
       <ProductList products={products} addToCart={addToCart} />
       <Cart cartItems={cartItems} removeFromCart={removeFromCart} />

@@ -77,7 +77,7 @@ const [data, setData] = useState ({
   return (
     <div class="signIn">
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="lg" >
+      <Container component="main" maxWidth="lg"align= "center" >
         <CssBaseline />
         <Box
           sx={{

@@ -28,7 +28,8 @@ body {
   place-items: center;
   min-width: 220px;
   min-height: 100vh;
-  background-color: #242424;
+  max-width: auto;
+  background-color: #76c3e1;
   color:#1a1a1a
 }
 
@@ -80,10 +81,10 @@ button:focus-visible {
   padding-right: 200px;
 }
 
-.signIn {
+/* .signIn {
   margin-left: 1000px;
   
-}
+} */
 
 .conteiner-profile {
   width: 300%;

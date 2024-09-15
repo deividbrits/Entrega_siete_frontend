@@ -1,23 +1,45 @@
 import React from 'react'
-import 'nes.css/css/nes.min.css'
+import { Button, Typography } from '@mui/material'
 
 export const Profile = () => {
   return (
-<div className='conteiner-profile'>
-<div class="nes-container is-dark with-title">
-  <p class="title">Perfil de David</p>
-  <h1> Nombre Completo </h1>
-  <span class="nes-text is-primary">David Brito</span>
-  <h1> UserName </h1>
-  <span class="nes-text is-primary">deividbrits</span>
-  <h1>Correo Electronico </h1>
-  <span class="nes-text is-primary">d.brito@allmanga.com</span>
-  <button type="button" class="nes-btn is-warning">Editar</button>
-  <h1>Contraseña </h1>
-  <span class="nes-text is-primary">*******</span>
-  <button type="button" class="nes-btn is-warning">Cambiar</button>
+<div className='conteiner-profile' >
+<div >
+ <p>
+  <Typography variant = "h1" sx={{ color: "#872d16" }} >Perfil de David</Typography>
+  </p>
+  
 
-</div>
+    
+</div>  
+<div>
+<p>
+  <Typography variant='h2' sx={{ color: "#f9f9f9" }}> Nombre Completo </Typography>
+  <Typography variant='h3'>David Brito</Typography>
+  </p>
+  </div>
+  
+  <div>
+    <p> 
+  <Typography variant='h2' sx={{ color: "#f9f9f9" }}> UserName </Typography>
+  <Typography variant='h3' >deividbrits</Typography>
+  </p>
+  </div>
+  <div>
+    <p>
+  <Typography variant='h2' sx={{ color: "#f9f9f9" }}>Correo Electronico </Typography>
+  <Typography variant='h3' >d.brito@allmanga.com</Typography>
+  <Button variant='contained' color = 'secondary' >Editar</Button>
+  </p>
+  </div>
+  <div>
+    <p>
+  <Typography variant='h2'sx={{ color: "#f9f9f9" }} >Contraseña </Typography>
+  <Typography variant='h3' >*******</Typography>
+  <Button variant='contained' color = 'secondary' >Cambiar</Button>
+  </p>
+  </div>
+
 </div>
   )
 }

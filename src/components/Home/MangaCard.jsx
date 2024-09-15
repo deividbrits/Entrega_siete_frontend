@@ -52,7 +52,7 @@ export default function MangaCard() {
         <Typography gutterBottom variant="h3" component="div">
           {e.nombre}
         </Typography>
-        <Typography variant="h4" sx={{ color: "text.secondary" }}>
+        <Typography variant="h4" sx={{ color: "#872d16" }}>
           {e.autor}
         </Typography>
       </CardContent>
