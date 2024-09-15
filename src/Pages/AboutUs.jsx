@@ -4,6 +4,8 @@ import { Typography } from '@mui/material'
 export const AboutUs = () => {
   return (
     <div className='about-conteiner' >
+     
+
         <Typography variant="h1" sx={{ textAlign: 'center',color: 'white' }}>Hola, somos AllManga  </Typography>
       <section >
           <div >
